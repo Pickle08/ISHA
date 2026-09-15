@@ -81,8 +81,8 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-ink/40" />
 
             <div className="relative z-10 flex-1 flex items-end">
-                <div className="w-full max-w-6xl mx-auto px-6 md:px-10 pb-16 md:pb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-10">
-                    <h1 className="font-display text-6xl md:text-8xl leading-[0.95] text-paper">
+                <div className="w-full max-w-6xl mx-auto px-6 md:px-10 pb-16 md:pb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-10">
+                    <h1 className="font-display text-5xl sm:text-6xl md:text-8xl leading-[0.95] text-paper">
                         ISHA
                         <br />
                         <span className="text-paper/80">

@@ -4,6 +4,7 @@ import { testimonials } from "../data/testimonials";
 const SLIDE_WIDTH = 640;
 const GAP = 96;
 const AUTOPLAY_MS = 5000;
+const PADDING = 48;
 
 export default function Testimonials() {
     const [index, setIndex] = useState(0);
@@ -34,8 +35,13 @@ export default function Testimonials() {
         return () => clearInterval(timer);
     }, [index]);
 
-    const offset =
-        viewportWidth / 2 - SLIDE_WIDTH / 2 - index * (SLIDE_WIDTH + GAP);
+    const isMobile = viewportWidth < 640;
+    const slideWidth = viewportWidth
+        ? Math.min(SLIDE_WIDTH, viewportWidth - PADDING)
+        : SLIDE_WIDTH;
+    const gap = isMobile ? 24 : GAP;
+
+    const offset = viewportWidth / 2 - slideWidth / 2 - index * (slideWidth + gap);
 
     return (
         <section id="tentang" className="bg-ink py-24 md:py-32 overflow-hidden">
@@ -49,11 +55,11 @@ export default function Testimonials() {
 
             <div
                 ref={viewportRef}
-                className="relative h-[320px] md:h-[380px] flex items-center overflow-hidden">
+                className="relative h-[340px] md:h-[380px] flex items-center overflow-hidden">
                 <div
                     className="flex items-center transition-transform duration-700 ease-out"
                     style={{
-                        gap: `${GAP}px`,
+                        gap: `${gap}px`,
                         transform: `translateX(${offset}px)`,
                     }}>
                     {testimonials.map((item, i) => {
@@ -62,7 +68,7 @@ export default function Testimonials() {
                         return (
                             <div
                                 key={i}
-                                style={{ width: `${SLIDE_WIDTH}px` }}
+                                style={{ width: `${slideWidth}px` }}
                                 className={`flex-shrink-0 text-center transition-opacity duration-700 ${
                                     isActive
                                         ? "opacity-100"
@@ -70,7 +76,7 @@ export default function Testimonials() {
                                           ? "opacity-20"
                                           : "opacity-0"
                                 }`}>
-                                <p className="font-display text-2xl md:text-4xl text-paper leading-snug">
+                                <p className="font-display text-xl sm:text-2xl md:text-4xl text-paper leading-snug px-2">
                                     "{item.quote}"
                                 </p>
                                 <p className="mt-6 font-sans text-base md:text-lg text-paper/70">

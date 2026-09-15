@@ -114,7 +114,7 @@ export default function Footer() {
                     </ul>
                 </div>
 
-                <div className="mt-16 md:mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="mt-16 md:mt-20 pt-8 border-t border-white/10 relative flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <ul className="flex gap-6">
                         {legalLinks.map((link) => (
                             <li key={link.label}>
@@ -127,9 +127,14 @@ export default function Footer() {
                         ))}
                     </ul>
 
-                    <p className="font-sans text-xs text-muted">
+                    <p className="font-sans text-xs text-muted md:absolute md:left-1/2 md:-translate-x-1/2">
                         © {new Date().getFullYear()} ISHA. Seluruh karya
                         dilindungi hak cipta.
+                    </p>
+
+                    <p className="font-sans text-xs text-muted">
+                        Developed by{" "}
+                        <span className="text-paper/60">codex.project</span>
                     </p>
                 </div>
             </div>

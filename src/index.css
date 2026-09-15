@@ -33,3 +33,8 @@
 .btn-alive {
     animation: glow 2.6s ease-in-out infinite;
 }
+
+section[id],
+footer[id] {
+    scroll-margin-top: 4.5rem;
+}
