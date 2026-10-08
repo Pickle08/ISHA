@@ -1,33 +1,56 @@
-// Data karya. Tambah item baru di sini tanpa perlu ubah komponen.
-// vimeoId diisi setelah video di-upload ke Vimeo (lihat angka di URL vimeo.com/xxxxxxx).
-// Selama vimeoId masih kosong, WorkCard otomatis pakai placeholder generative canvas.
 export const works = [
     {
         id: 1,
-        title: "A Living Museum",
+        slug: "kryptonite",
+        title: "Kryptonite",
         year: 2026,
         medium: "TouchDesigner, real-time visuals",
+        tools: ["TouchDesigner"],
+        image: "/images/works/kryptonite/Kryptonite.0.webp",
+        gallery: [
+            "/images/works/kryptonite/Kryptonite.2.webp",
+            "/images/works/kryptonite/Kryptonite.5.webp",
+        ],
+        description: [
+            "Kryptonite menjelajahi ketegangan antara kekuatan dan kerapuhan. Bentuk-bentuk bercahaya terus tumbuh, pecah, lalu menyusun ulang dirinya, seperti materi yang tidak pernah benar-benar diam.",
+            "Karya ini dibangun di TouchDesigner sebagai sistem real-time. Parameter visualnya digerakkan oleh logika prosedural, sehingga setiap momen yang tampil di layar tidak pernah persis sama dengan sebelumnya.",
+        ],
         vimeoId: "",
     },
     {
         id: 2,
+        slug: "pecahan-cahaya",
         title: "Pecahan Cahaya",
         year: 2025,
         medium: "Projection mapping, instalasi",
+        tools: ["TouchDesigner"],
+        image: "",
+        gallery: [],
+        description: ["Deskripsi karya akan ditulis di sini."],
         vimeoId: "",
     },
     {
         id: 3,
+        slug: "arus-data",
         title: "Arus Data",
         year: 2025,
         medium: "Generative art, audio-reactive",
+        tools: ["TouchDesigner"],
+        image: "",
+        gallery: [],
+        description: ["Deskripsi karya akan ditulis di sini."],
         vimeoId: "",
     },
     {
         id: 4,
+        slug: "ruang-antara",
         title: "Ruang Antara",
         year: 2024,
         medium: "Interactive installation",
+        tools: ["TouchDesigner"],
+        image: "",
+        gallery: [],
+        description: ["Deskripsi karya akan ditulis di sini."],
         vimeoId: "",
     },
 ];

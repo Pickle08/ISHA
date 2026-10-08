@@ -19,7 +19,6 @@ export default function Marquee({ items = DEFAULT_ITEMS, speed = "28s" }) {
                         key={i}
                         className="font-sans text-xs md:text-sm tracking-wide text-paper/60 flex items-center gap-8">
                         {item}
-                        <span className="text-violet">•</span>
                     </span>
                 ))}
             </div>

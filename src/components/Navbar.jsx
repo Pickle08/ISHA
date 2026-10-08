@@ -1,11 +1,23 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const links = [
-    { label: "Karya", href: "#karya" },
-    { label: "Tentang", href: "#tentang" },
-    { label: "Kontak", href: "#kontak" },
+    { label: "Karya", to: "/#karya" },
+    { label: "Tentang", to: "/#tentang" },
+    { label: "Kontak", to: "#kontak", anchor: true },
 ];
+
+function NavLink({ link, className, onClick }) {
+    return link.anchor ? (
+        <a href={link.to} onClick={onClick} className={className}>
+            {link.label}
+        </a>
+    ) : (
+        <Link to={link.to} onClick={onClick} className={className}>
+            {link.label}
+        </Link>
+    );
+}
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
@@ -17,12 +29,7 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
-    useEffect(() => {
-        document.body.style.overflow = open ? "hidden" : "";
-        return () => {
-            document.body.style.overflow = "";
-        };
-    }, [open]);
+    const closeMenu = () => setOpen(false);
 
     return (
         <header
@@ -32,62 +39,79 @@ export default function Navbar() {
                     : "bg-transparent"
             }`}>
             <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-10 py-5">
-                <a
-                    href="#top"
-                    onClick={() => setOpen(false)}
-                    className="font-display text-xl tracking-wide text-paper">
+                <Link
+                    to="/"
+                    className="font-display text-5xl md:text-7xl leading-none text-paper hover:text-copper transition-colors duration-300">
                     ISHA
-                </a>
+                </Link>
 
                 <ul className="hidden md:flex items-center gap-10">
                     {links.map((link) => (
-                        <li key={link.href}>
-                            <a
-                                href={link.href}
-                                className="font-sans text-sm text-paper/80 hover:text-violet transition-colors duration-300">
-                                {link.label}
-                            </a>
+                        <li key={link.label}>
+                            {link.to ? (
+                                <Link
+                                    to={link.to}
+                                    className="font-sans text-sm text-paper/70 hover:text-paper transition-colors duration-300">
+                                    {link.label}
+                                </Link>
+                            ) : (
+                                <a
+                                    href={link.href}
+                                    className="font-sans text-sm text-paper/70 hover:text-paper transition-colors duration-300">
+                                    {link.label}
+                                </a>
+                            )}
                         </li>
                     ))}
                 </ul>
 
-                <div className="flex items-center gap-3">
-                    <a
-                        href="#kontak"
-                        className="btn-alive hidden md:inline-block font-sans text-sm font-medium bg-violet text-ink px-4 py-1.5 rounded-full hover:bg-paper transition-colors duration-300">
-                        Hubungi
-                    </a>
+                <a
+                    href="#kontak"
+                    className="hidden md:inline-block font-sans text-sm border border-copper/60 text-copper px-4 py-1.5 rounded-full hover:bg-copper hover:text-ink transition-colors duration-300">
+                    Hubungi
+                </a>
 
-                    <button
-                        onClick={() => setOpen((v) => !v)}
-                        aria-label={open ? "Tutup menu" : "Buka menu"}
-                        aria-expanded={open}
-                        className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-full text-paper bg-white/10 border border-white/10 hover:bg-white/20 transition-colors duration-300">
-                        {open ? <X size={20} /> : <Menu size={20} />}
-                    </button>
-                </div>
+                <button
+                    onClick={() => setOpen(!open)}
+                    aria-label="Buka menu"
+                    className="md:hidden relative w-7 h-5 flex flex-col justify-between">
+                    <span
+                        className={`h-px w-full bg-paper transition-transform duration-300 ${
+                            open ? "translate-y-[9px] rotate-45" : ""
+                        }`}
+                    />
+                    <span
+                        className={`h-px w-full bg-paper transition-opacity duration-300 ${
+                            open ? "opacity-0" : "opacity-100"
+                        }`}
+                    />
+                    <span
+                        className={`h-px w-full bg-paper transition-transform duration-300 ${
+                            open ? "-translate-y-[9px] -rotate-45" : ""
+                        }`}
+                    />
+                </button>
             </nav>
 
             <div
-                className={`md:hidden overflow-hidden transition-[max-height] duration-500 ease-out ${
-                    open ? "max-h-96" : "max-h-0"
+                className={`md:hidden overflow-hidden transition-[max-height] duration-300 ${
+                    open ? "max-h-64" : "max-h-0"
                 }`}>
-                <ul className="px-6 pb-6 space-y-1">
+                <ul className="flex flex-col px-6 pb-6 gap-4">
                     {links.map((link) => (
-                        <li key={link.href}>
-                            <a
-                                href={link.href}
-                                onClick={() => setOpen(false)}
-                                className="block font-display text-2xl text-paper/90 hover:text-violet py-2 transition-colors duration-300">
-                                {link.label}
-                            </a>
+                        <li key={link.label}>
+                            <NavLink
+                                link={link}
+                                onClick={closeMenu}
+                                className="font-sans text-base text-paper/80 hover:text-copper transition-colors duration-300"
+                            />
                         </li>
                     ))}
-                    <li className="pt-4">
+                    <li>
                         <a
                             href="#kontak"
-                            onClick={() => setOpen(false)}
-                            className="btn-alive inline-block font-sans text-sm font-medium bg-violet text-ink px-6 py-3 rounded-full hover:bg-paper transition-colors duration-300">
+                            onClick={closeMenu}
+                            className="inline-block font-sans text-sm border border-copper/60 text-copper px-4 py-1.5 rounded-full">
                             Hubungi
                         </a>
                     </li>

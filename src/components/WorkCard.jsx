@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 function PlaceholderCanvas({ seed = 0 }) {
     const canvasRef = useRef(null);
@@ -60,14 +61,23 @@ function PlaceholderCanvas({ seed = 0 }) {
 
 export default function WorkCard({ work }) {
     return (
-        <div className="group">
+        <Link to={`/karya/${work.slug}`} className="group block">
             <div className="relative w-full aspect-video bg-surface rounded-lg overflow-hidden">
-                <PlaceholderCanvas seed={work.id} />
+                {work.image ? (
+                    <img
+                        src={work.image}
+                        alt={work.title}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                ) : (
+                    <PlaceholderCanvas seed={work.id} />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
             </div>
             <div className="mt-4 flex items-start justify-between">
                 <div>
-                    <h3 className="font-display text-xl text-paper">
+                    <h3 className="font-display text-xl text-paper group-hover:text-copper transition-colors duration-300">
                         {work.title}
                     </h3>
                     <p className="font-sans text-sm text-muted mt-1">
@@ -78,6 +88,6 @@ export default function WorkCard({ work }) {
                     {work.year}
                 </span>
             </div>
-        </div>
+        </Link>
     );
 }

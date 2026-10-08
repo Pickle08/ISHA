@@ -97,7 +97,7 @@ export default function Statement() {
                             <button
                                 type="submit"
                                 className="btn-alive font-sans text-sm font-medium bg-violet text-ink px-6 py-3 rounded-full hover:bg-paper transition-colors duration-300 whitespace-nowrap">
-                                Sign up now
+                                Let's Collaborate
                             </button>
                         </form>
                     )}

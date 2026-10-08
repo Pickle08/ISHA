@@ -41,12 +41,12 @@ export default function Testimonials() {
         : SLIDE_WIDTH;
     const gap = isMobile ? 24 : GAP;
 
-    const offset = viewportWidth / 2 - slideWidth / 2 - index * (slideWidth + gap);
+    const offset =
+        viewportWidth / 2 - slideWidth / 2 - index * (slideWidth + gap);
 
     return (
         <section id="tentang" className="bg-ink py-24 md:py-32 overflow-hidden">
             <div className="max-w-6xl mx-auto px-6 md:px-10 mb-16 flex items-center justify-center gap-3">
-                <span className="w-2.5 h-2.5 rounded-full bg-paper flex-shrink-0" />
                 <p className="font-sans text-sm md:text-base font-medium text-paper">
                     Tempat imajinasi manusia bertemu sistem generative
                     real-time.
